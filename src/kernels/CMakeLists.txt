@@ -6,3 +6,8 @@ set_property(TARGET embeddingFunctor PROPERTY CUDA_SEPARABLE_COMPILATION   ON)
 set_property(TARGET embeddingFunctor PROPERTY POSITION_INDEPENDENT_CODE  ON)
 # 允许链接器解析设备代码中的符号，通常用于处理静态链接的CUDA内核。
 set_property(TARGET embeddingFunctor PROPERTY CUDA_RESOLVE_DEVICE_SYMBOLS  ON)
+
+add_library(paddingoffsetFunctor STATIC cal_paddingoffset.cu)
+set_property(TARGET paddingoffsetFunctor PROPERTY CUDA_SEPARABLE_COMPILATION   ON)
+set_property(TARGET paddingoffsetFunctor PROPERTY POSITION_INDEPENDENT_CODE  ON)
+set_property(TARGET paddingoffsetFunctor PROPERTY CUDA_RESOLVE_DEVICE_SYMBOLS  ON)
