@@ -11,3 +11,8 @@ add_library(paddingoffsetFunctor STATIC cal_paddingoffset.cu)
 set_property(TARGET paddingoffsetFunctor PROPERTY CUDA_SEPARABLE_COMPILATION   ON)
 set_property(TARGET paddingoffsetFunctor PROPERTY POSITION_INDEPENDENT_CODE  ON)
 set_property(TARGET paddingoffsetFunctor PROPERTY CUDA_RESOLVE_DEVICE_SYMBOLS  ON)
+
+add_library(rmsnormFunctor STATIC rmsnorm_kernel.cu)
+set_property(TARGET rmsnormFunctor PROPERTY CUDA_SEPARABLE_COMPILATION   ON)
+set_property(TARGET rmsnormFunctor PROPERTY POSITION_INDEPENDENT_CODE  ON)
+set_property(TARGET rmsnormFunctor PROPERTY CUDA_RESOLVE_DEVICE_SYMBOLS  ON)

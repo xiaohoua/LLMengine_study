@@ -15,3 +15,12 @@ target_link_libraries(
     -lcudart
     -lcudadevrt
     paddingoffsetFunctor)
+
+add_executable(rms_norm
+    test_rmsnorm.cu
+)
+target_link_libraries(
+    rms_norm PUBLIC
+    -lcudart
+    -lcudadevrt
+    rmsnormFunctor)
