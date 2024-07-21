@@ -24,3 +24,12 @@ target_link_libraries(
     -lcudart
     -lcudadevrt
     rmsnormFunctor)
+
+add_executable(causal_mask
+    test_causal_mask.cu
+)
+target_link_libraries(
+    causal_mask PUBLIC
+    -lcudart
+    -lcudadevrt
+    BuildCausalMaskFunctor)

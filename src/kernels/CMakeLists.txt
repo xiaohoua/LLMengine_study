@@ -16,3 +16,8 @@ add_library(rmsnormFunctor STATIC rmsnorm_kernel.cu)
 set_property(TARGET rmsnormFunctor PROPERTY CUDA_SEPARABLE_COMPILATION   ON)
 set_property(TARGET rmsnormFunctor PROPERTY POSITION_INDEPENDENT_CODE  ON)
 set_property(TARGET rmsnormFunctor PROPERTY CUDA_RESOLVE_DEVICE_SYMBOLS  ON)
+
+add_library(BuildCausalMaskFunctor STATIC build_causal_mask.cu)
+set_property(TARGET BuildCausalMaskFunctor PROPERTY CUDA_SEPARABLE_COMPILATION   ON)
+set_property(TARGET BuildCausalMaskFunctor PROPERTY POSITION_INDEPENDENT_CODE  ON)
+set_property(TARGET BuildCausalMaskFunctor PROPERTY CUDA_RESOLVE_DEVICE_SYMBOLS  ON)
