@@ -31,3 +31,8 @@ target_link_libraries(linear PUBLIC -lcudart -lcublas cublasWrapper)
 add_library(cublasWrapper STATIC cublas_utils.cc)
 set_property(TARGET cublasWrapper PROPERTY POSITION_INDEPENDENT_CODE  ON)
 set_property(TARGET cublasWrapper PROPERTY CUDA_RESOLVE_DEVICE_SYMBOLS  ON)
+
+add_library(qkv_bias_and_rope STATIC qkv_bias_and_RoPE.cu)
+set_property(TARGET qkv_bias_and_rope PROPERTY CUDA_SEPARABLE_COMPILATION   ON)
+set_property(TARGET qkv_bias_and_rope PROPERTY POSITION_INDEPENDENT_CODE  ON)
+set_property(TARGET qkv_bias_and_rope PROPERTY CUDA_RESOLVE_DEVICE_SYMBOLS  ON)
