@@ -1,22 +1,25 @@
 #pragma once
-#include<cuda.h>
-#include<cuda_runtime.h>
-#include<cuda_fp16.h>
+#include <cuda.h>
+#include <cuda_runtime.h>
+#include <cuda_fp16.h>
 
 template<typename T>
-struct Vec{
+struct Vec {
     using Type = T;
     static constexpr int size = 0;
 };
-
 template<>
-struct Vec<half>{
-    using Type = half2;
+struct Vec<half> {
+    using Type = half2; 
     static constexpr int size = 2;
-}
-
+};
 template<>
-static Vec<float>{
+struct Vec<float> {
     using Type = float4;
     static constexpr int size = 4;
-}
+};
+//(RussWong)note: temply dont know which LLM use two continuous elements do RoPE
+struct TwoFloat2{
+    float2 x;
+    float2 y;
+};

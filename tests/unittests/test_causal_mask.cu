@@ -5,7 +5,7 @@
 #include <string>      // std::string
 #include <vector>      // std::vector
 
-#include "src/kernels/build_casual_mask.h"
+#include "src/kernels/build_causal_mask.h"
 void CPUbuildCasualMask(float* mask, 
                         const int* q_lens,  //input lens, shape=[batch size]
                         const int* k_lens,  //context lens, shape=[batch size]

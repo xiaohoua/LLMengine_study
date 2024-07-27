@@ -1,10 +1,10 @@
 #include"src/kernels/cal_paddingoffset.h"
 
-__global__ void CalPaddingoffset(int* padding_offset,
-                                int* cum_seqlens,  //cumsum.seq.lens
-                                const int* input_lengths,
-                                const int batch_size,
-                                const int max_q_len){
+__global__ void CalPaddingoffset(int*         padding_offset, 
+                                int*         cum_seqlens,
+                                const int*   input_lengths, //actual input lens
+                                const int    batch_size,
+                                const int    max_q_len) {
     
     int total_seqlen = 0;
     int cum_offset = 0;
@@ -21,7 +21,7 @@ __global__ void CalPaddingoffset(int* padding_offset,
     }
 };
 
-void launchPaddingoffset(TensorWrapper<int>* padding_offset,
+void launchCalPaddingoffset(TensorWrapper<int>* padding_offset,
                             TensorWrapper<int>* cum_seqlens,
                             TensorWrapper<int>* input_lengths)
 {
@@ -32,6 +32,6 @@ void launchPaddingoffset(TensorWrapper<int>* padding_offset,
     LLM_CHECK_WITH_INFO(batch_size == cum_seqlens->shape[0],
                         "cum seqlen should equal to batch_size");
     CalPaddingoffset<<<1, 1>>>(
-        padding_offset, cum_seqlens, input_lengths, batch_size, max_q_len
+        padding_offset->data, cum_seqlens->data, input_lengths->data, batch_size, max_q_len
     );
 };

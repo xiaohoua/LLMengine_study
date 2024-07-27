@@ -77,7 +77,7 @@ int main(int argc, char* argv[]){
         std::random_device rd;
         std::mt19937 gen(rd());
         std::uniform_int_distribution<> dis_int(0, vocab_size-1);
-        std::uniform_float_distribution<> dis_real(1.0, 2.0);
+        std::uniform_real_distribution<> dis_real(1.0, 2.0);
 
         for(int i=0; i<max_context_token_num; i++){
             h_input[i]=dis_int(gen);
@@ -104,15 +104,15 @@ int main(int argc, char* argv[]){
         DataType type_float = getTensorType<float>();
         DataType type_int = getTensorType<int>();
         TensorWrapper<int>* input_ids = new TensorWrapper<int>(Device::GPU, type_int,
-                                                                {max_context_token_num}
+                                                                {max_context_token_num},
                                                                 d_input);
         TensorWrapper<float>* output = new TensorWrapper<float>(Device::GPU, type_float,
-                                                                {max_context_token_num,hidden_size}
+                                                                {max_context_token_num,hidden_size},
                                                                 d_output);
         EmbeddingWeight<float> emb_table;
         emb_table.data = d_table;
-        launchInputEmbedding(input_ids,output,emb_table);
-        CHECK(cudaMemcpy(h_output, output, emb_table));
+        launchInputEmbedding(input_ids,output,&emb_table);
+        CHECK(cudaMemcpy(h_output, output, output_size * sizeof(float), cudaMemcpyDeviceToHost));
         std::cout << "printf h_output for check" << std::endl;
         for (int i = 0; i < max_context_token_num; i++){
             std::cout << (float)h_output[i * hidden_size] << std::endl;

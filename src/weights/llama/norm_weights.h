@@ -2,4 +2,4 @@
 template<typename T>
 struct LayerNormWeight{
     T* gamma;
-}
+};

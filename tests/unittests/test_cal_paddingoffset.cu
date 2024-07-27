@@ -27,11 +27,11 @@ int main(){
     cudaMalloc((void**)&d_padding_offset, sizeof(int) * batch_size * max_q_len);
 
     for(int i=0; i<batch_size; i++){
-        h_seq_lens = batch_size;
+        h_seq_lens[i] = batch_size;
     }
-    cudaMemcpy(d_seq_lens, h_seq_lens, batch_size*sizeof(int), cudaMemcpuHostToDevice);
+    cudaMemcpy(d_seq_lens, h_seq_lens, batch_size*sizeof(int), cudaMemcpyHostToDevice);
 
-    Datatype type_int = getTensorType<int>();
+    DataType type_int = getTensorType<int>();
     TensorWrapper<int>* padding_offset = new TensorWrapper<int>(Device::GPU, type_int,
                                                             {batch_size, max_q_len},
                                                             d_padding_offset);

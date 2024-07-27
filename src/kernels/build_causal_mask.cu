@@ -1,4 +1,4 @@
-#include "src/kernels/build_casual_mask.h"
+#include "src/kernels/build_causal_mask.h"
 
 template<typename T>
 __global__ void BuildCausalMasksConsideringContextPastKV(T* mask,

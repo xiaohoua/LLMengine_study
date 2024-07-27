@@ -27,20 +27,20 @@ do                                                    \
         exit(1);                                      \
     }                                                 \
 } while (0)
-
-void CPURMSNorm(float* h_decoder_out,
-                float* h_scale, float eps, int hidden_units, int num_tokens){
-    for(int b=0; b<num_tokens; b++){
+void CPUfusedresidandRMSNorm(float* h_decoder_out, 
+                                    float* h_scale, float eps, int hidden_units, int num_tokens) {
+    for(int b = 0; b < num_tokens; b++) {
         float inv_fenmu = 0.0f;
         float mean = 0.0f;
         float input = 0.0f;
         float sum = 0.0f;
-        for(int i=0; i<hidden_units; i++){
-            input = h_decoder_out[b*hidden_units + i];
-            sum += input*input;
+	for (int i = 0; i < hidden_units; i++) {
+            input = h_decoder_out[b * hidden_units + i];
+	    sum += input * input;
         }
-        mean = (float)sum/hidden_units;
+        mean = (float)sum / hidden_units;
         inv_fenmu = rsqrt(mean + eps);
+        
         for (int i = 0; i < hidden_units; i++) {
             h_decoder_out[b * hidden_units + i] = h_decoder_out[b * hidden_units + i] * inv_fenmu * h_scale[i];
         }

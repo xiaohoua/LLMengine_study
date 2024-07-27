@@ -4,8 +4,10 @@
 #include <string>
 #include <algorithm>
 #include <numeric>
+#include<cuda_fp16.h>
 #include "src/utils/string_utils.h"
 #include "src/utils/macro.h"
+
 
 enum Device
 {
@@ -50,6 +52,8 @@ DataType getTensorType()
         return UNSUPPORTED;
     }
 }
+template<typename T>
+class TensorWrapper;
 
 struct Tensor{
 

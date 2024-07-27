@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
-project(oneLLM LANGUAGE CXX CUDA)
+# set(CMAKE_CXX_COMPILER "/usr/bin/g++" CACHE FILEPATH "C++ compiler")
+# set(CMAKE_CUDA_COMPILER "/usr/local/cuda-12.2/bin/nvcc" CACHE FILEPATH "CUDA compiler")
+project(oneLLM LANGUAGES CXX CUDA)
 
 find_package(CUDA 10.0 REQUIRED)
 
