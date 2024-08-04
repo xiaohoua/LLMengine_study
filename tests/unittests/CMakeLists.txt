@@ -105,3 +105,12 @@ target_link_libraries(
     -lcudart
     -lcudadevrt
     topk) 
+
+add_executable(test_sampling
+    test_sampling.cu
+)
+target_link_libraries(  
+    test_sampling PUBLIC
+    -lcudart
+    -lcudadevrt
+    sampling) 
